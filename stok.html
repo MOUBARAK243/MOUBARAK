@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock - Mon Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+        
+        .admin-section {
+            padding: 3rem 0;
+        }
+        
+        .admin-panel {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-header p {
+            color: #666;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        
+        .email-list {
+            margin-top: 2rem;
+        }
+        
+        .email-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .email-table th, .email-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .email-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .email-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .password-cell {
+            font-family: monospace;
+            position: relative;
+        }
+        
+        .show-password {
+            background: none;
+            border: none;
+            color: #6a11cb;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ff5e7d 0%, #ff3449 100%);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .contact-link {
+            color: #ffcc00 !important;
+            font-weight: bold;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #555;
+            margin-top: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .email-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MonSite</div>
+                <ul class="nav-links">
+                    <li><a href="accueil.html">Accueil</a></li>
+                    <li><a href="connection.html">Connexion</a></li>
+                    <li><a href="produit1.html">Produit 1</a></li>
+                    <li><a href="produit2.html">Produit 2</a></li>
+                    <li><a href="produit3.html">Produit 3</a></li>
+                    <li><a href="produit4.html">Produit 4</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="admin-section">
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h2>Gestion des Utilisateurs</h2>
+                    <p>Page administrative - Données de connexion des utilisateurs</p>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-users">0</div>
+                        <div class="stat-label">Utilisateurs enregistrés</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="today-users">0</div>
+                        <div class="stat-label">Connexions aujourd'hui</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="active-users">0</div>
+                        <div class="stat-label">Utilisateurs actifs</div>
+                    </div>
+                </div>
+                
+                <div class="email-list">
+                    <h3>Identifiants de connexion des utilisateurs</h3>
+                    
+                    <table class="email-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Mot de passe</th>
+                                <th>Date de connexion</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="email-table-body">
+                            <!-- Les données seront ajoutées ici dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="btn" id="export-btn">Exporter les données</button>
+                    <button class="btn btn-danger" id="clear-btn">Effacer toutes les données</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="notification" class="notification">
+        Données exportées avec succès!
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <a href="accueil.html">Accueil</a>
+                    <a href="connection.html">Connexion</a>
+                    <a href="produit1.html">Produit 1</a>
+                    <a href="produit2.html">Produit 2</a>
+                    <a href="produit3.html">Produit 3</a>
+                    <a href="produit4.html">Produit 4</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@monsite.com</p>
+                    <a href="tel:+2250566872739" class="contact-link">+225 0566872739</a>
+                    <p>Adresse: Abidjan, Côte d'Ivoire</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>À propos</h3>
+                    <p>Nous sommes une entreprise innovante offrant des produits de qualité supérieure depuis 2023.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MonSite. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupération des données depuis le localStorage
+            let userData = JSON.parse(localStorage.getItem('userCredentials')) || [];
+            
+            // Mise à jour des statistiques
+            document.getElementById('total-users').textContent = userData.length;
+            document.getElementById('today-users').textContent = calculateTodayUsers(userData);
+            document.getElementById('active-users').textContent = Math.floor(userData.length * 0.7); // Simulation
+            
+            // Remplissage du tableau des données utilisateurs
+            const emailTableBody = document.getElementById('email-table-body');
+            emailTableBody.innerHTML = '';
+            
+            if (userData.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 5;
+                cell.textContent = 'Aucune donnée utilisateur enregistrée pour le moment.';
+                cell.style.textAlign = 'center';
+                cell.style.padding = '2rem';
+                cell.style.color = '#666';
+                row.appendChild(cell);
+                emailTableBody.appendChild(row);
+            } else {
+                userData.forEach((user, index) => {
+                    const row = document.createElement('tr');
+                    
+                    // ID
+                    const idCell = document.createElement('td');
+                    idCell.textContent = index + 1;
+                    
+                    // Email
+                    const emailCell = document.createElement('td');
+                    emailCell.textContent = user.email;
+                    
+                    // Mot de passe (masqué par défaut)
+                    const passwordCell = document.createElement('td');
+                    passwordCell.className = 'password-cell';
+                    
+                    const passwordSpan = document.createElement('span');
+                    passwordSpan.textContent = '••••••••';
+                    passwordSpan.id = `password-${index}`;
+                    
+                    const showBtn = document.createElement('button');
+                    showBtn.textContent = '👁';
+                    showBtn.className = 'show-password';
+                    showBtn.setAttribute('data-index', index);
+                    showBtn.setAttribute('data-visible', 'false');
+                    showBtn.addEventListener('click', function() {
+                        togglePasswordVisibility(this);
+                    });
+                    
+                    passwordCell.appendChild(passwordSpan);
+                    passwordCell.appendChild(showBtn);
+                    
+                    // Date
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = user.date || new Date().toLocaleDateString();
+                    
+                    // Actions
+                    const actionCell = document.createElement('td');
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Supprimer';
+                    deleteBtn.className = 'btn btn-danger';
+                    deleteBtn.addEventListener('click', function() {
+                        deleteUser(index);
+                    });
+                    actionCell.appendChild(deleteBtn);
+                    
+                    row.appendChild(idCell);
+                    row.appendChild(emailCell);
+                    row.appendChild(passwordCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(actionCell);
+                    
+                    emailTableBody.appendChild(row);
+                });
+            }
+            
+            // Fonction pour basculer la visibilité du mot de passe
+            function togglePasswordVisibility(button) {
+                const index = button.getAttribute('data-index');
+                const isVisible = button.getAttribute('data-visible') === 'true';
+                const passwordSpan = document.getElementById(`password-${index}`);
+                
+                if (isVisible) {
+                    passwordSpan.textContent = '••••••••';
+                    button.setAttribute('data-visible', 'false');
+                    button.textContent = '👁';
+                } else {
+                    passwordSpan.textContent = userData[index].password;
+                    button.setAttribute('data-visible', 'true');
+                    button.textContent = '🙈';
+                }
+            }
+            
+            // Fonction pour calculer les connexions aujourd'hui
+            function calculateTodayUsers(userData) {
+                const today = new Date().toLocaleDateString();
+                return userData.filter(user => user.date === today).length;
+            }
+            
+            // Fonction pour supprimer un utilisateur
+            function deleteUser(index) {
+                if (confirm('Êtes-vous sûr de vouloir supprimer ces données utilisateur ?')) {
+                    userData.splice(index, 1);
+                    localStorage.setItem('userCredentials', JSON.stringify(userData));
+                    location.reload();
+                }
+            }
+            
+            // Export des données
+            document.getElementById('export-btn').addEventListener('click', function() {
+                if (userData.length === 0) {
+                    alert('Aucune donnée à exporter.');
+                    return;
+                }
+                
+                const csvContent = "data:text/csv;charset=utf-8,ID,Email,Mot de passe,Date\n" +
+                    userData.map((user, index) => 
+                        `${index + 1},${user.email},${user.password},${user.date || new Date().toLocaleDateString()}`
+                    ).join("\n");
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "donnees_utilisateurs.csv");
+                document.body.appendChild(link);
+                
+                link.click();
+                document.body.removeChild(link);
+                
+                // Afficher une notification
+                const notification = document.getElementById('notification');
+                notification.textContent = 'Données exportées avec succès!';
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+            
+            // Effacer toutes les données
+            document.getElementById('clear-btn').addEventListener('click', function() {
+                if (userData.length === 0) {
+                    alert('Aucune donnée à effacer.');
+                    return;
+                }
+                
+                if (confirm('Êtes-vous sûr de vouloir effacer toutes les données utilisateur ? Cette action est irréversible.')) {
+                    localStorage.removeItem('userCredentials');
+                    location.reload();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
