@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection vers Accueil</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 30px 0;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .button {
+            display: inline-block;
+            background: #ff4081;
+            color: white;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background: #e91e63;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .instructions {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 35px;
+            text-align: left;
+        }
+        .instructions h2 {
+            margin-bottom: 18px;
+            color: #ffeb3b;
+            text-align: center;
+        }
+        .instructions ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        .instructions li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            p {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 30px 20px;
+            }
+            .countdown {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">GA</div>
+    
+    <div class="container">
+        <h1>Bienvenue sur mon site</h1>
+        <p>Vous serez automatiquement redirigé vers la page d'accueil dans <span id="countdown">5</span> secondes.</p>
+        
+        <div class="countdown" id="visual-countdown">5</div>
+        
+        <a href="accueil.html" class="button">Accéder directement au site</a>
+        
+        <div class="instructions">
+            <h2>Instructions pour GitHub Pages</h2>
+            <ol>
+                <li>Copiez ce code dans un fichier nommé <strong>index.html</strong></li>
+                <li>Placez ce fichier dans le même dossier que votre <strong>accueil.html</strong></li>
+                <li>Téléchargez les deux fichiers sur GitHub</li>
+                <li>Activez GitHub Pages dans les paramètres de votre repository</li>
+                <li>Votre site sera accessible à l'adresse <strong>votrenomutilisateur.github.io</strong></li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer>
+        Votre site GitHub Pages sera en ligne après traitement (généralement quelques minutes)
+    </footer>
+
+    <script>
+        // Script de redirection automatique
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        const visualCountdown = document.getElementById('visual-countdown');
+        
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            visualCountdown.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "accueil.html";
+            }
+        }, 1000);
+        
+        // Option pour annuler la redirection
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                clearInterval(countdownInterval);
+                countdownElement.textContent = "Redirection annulée";
+                visualCountdown.textContent = "0";
+                
+                // Créer un message de confirmation
+                const message = document.createElement('div');
+                message.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.8);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    z-index: 1000;
+                    font-weight: bold;
+                `;
+                message.textContent = "Redirection annulée. Appuyez sur le bouton pour accéder au site.";
+                document.body.appendChild(message);
+                
+                // Supprimer le message après 5 secondes
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
