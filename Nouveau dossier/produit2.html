@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit 2 - Mon Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+        
+        .product-detail {
+            padding: 3rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            border-radius: 10px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .product-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #ff7e5f;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .product-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .product-features {
+            margin-bottom: 2rem;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.5rem;
+            list-style-position: inside;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .contact-link {
+            color: #ffcc00 !important;
+            font-weight: bold;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #555;
+            margin-top: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .product-detail {
+                flex-direction: column;
+            }
+            
+            .product-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MonSite</div>
+                <ul class="nav-links">
+                    <li><a href="accueil.html">Accueil</a></li>
+                    <li><a href="connection.html">Connexion</a></li>
+                    <li><a href="produit1.html">Produit 1</a></li>
+                    <li><a href="produit2.html" class="active">Produit 2</a></li>
+                    <li><a href="produit3.html">Produit 3</a></li>
+                    <li><a href="produit4.html">Produit 4</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="product-detail">
+            <div class="product-image">P2</div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Produit 2</h1>
+                <p class="product-price">149,99 €</p>
+                
+                <p class="product-description">
+                    Le Produit 2 est une innovation révolutionnaire dans son domaine. 
+                    Avec ses fonctionnalités avancées et son design épuré, il saura vous impressionner.
+                </p>
+                
+                <div class="product-features">
+                    <h3>Caractéristiques :</h3>
+                    <ul>
+                        <li>Technologie de pointe brevetée</li>
+                        <li>Autonomie prolongée</li>
+                        <li>Compatibilité universelle</li>
+                        <li>Design élégant et compact</li>
+                        <li>Garantie 3 ans</li>
+                    </ul>
+                </div>
+                
+                <button class="btn">Ajouter au panier</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <a href="accueil.html">Accueil</a>
+                    <a href="connection.html">Connexion</a>
+                    <a href="produit1.html">Produit 1</a>
+                    <a href="produit2.html">Produit 2</a>
+                    <a href="produit3.html">Produit 3</a>
+                    <a href="produit4.html">Produit 4</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@monsite.com</p>
+                    <a href="tel:+2250566872739" class="contact-link">+225 0566872739</a>
+                    <p>Adresse: Abidjan, Côte d'Ivoire</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>À propos</h3>
+                    <p>Nous sommes une entreprise innovante offrant des produits de qualité supérieure depuis 2023.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MonSite. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
